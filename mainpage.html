@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/style.css">
+</head>
+<style>
+    body            { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+a,        { color: #377ba8; }          { margin: 0; }
+h2              { border-bottom: 2px solid #eee; }
+h1             { font-size: 1.2em; }
+.workflow        {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    text-align:center;
+  padding: 15px;
+  margin-bottom: 40px;
+  margin-left: 125px;
+  font-size: 1.2em;}
+
+table, th, td {
+  border: none;
+  border-bottom: 1px solid #C8C8C8;
+  border-collapse: collapse;
+  text-align:left;
+  padding: 10px;
+  margin-bottom: 40px;
+  margin-left: 125px;
+  font-size: 0.9em;
+}
+
+.male th {
+    background-color: #add8e6;
+    color: white;
+}
+
+.female th {
+    background-color: #77dd77;
+    color: white;
+}
+
+tr:nth-child(odd)		{ background-color:#eee; }
+tr:nth-child(even)	{ background-color:#fff; }
+
+tr:hover            { background-color: #81ccda;}
+
+/* CSS */
+/* background-color: #7f9db9; */
+.button-4 {
+  appearance: none;
+  background-color: #9fc5e8;
+  margin:10px;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color:#101011;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+.utc {font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    text-align:right;
+  padding: 2px;
+  margin-bottom: 0px;
+  font-size: 1.2em;}
+</style>
+
+
+
+<body>
+
+<div class="utc">
+    <lable>Current UTC Time:</lable>{{current_time}}
+    </div>
+    <div class="workflow">
+    <form action="/request",method="post">
+    <label>Workflow Id:</label><br>
+    <input type="text" name="Workflowid" required><br>
+    <button class="button-4" role="button" type="submit">Submit</button>
+</form>
+</div>
+<form action="/add",method="post">
+    <!-- <button type="submit">Add Sample Data</button> -->
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Workflow_Execution_Id</th>
+            <th>Workflow_Step_Id</th>
+            <th>Status</th>
+            <th>Created_at</th>
+            <th>Updated_at</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            <td>{{row['id']}}</td>
+            <td>{{row['workflow_execution_id']}}</td>
+            <td>{{row['workflow_step_id']}}</td>
+            <td>{{row['status']}}</td>
+            <td>{{row.created_at}}</td>
+            <td>{{row.updated_at}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+</body>
+</html>
